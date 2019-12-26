@@ -1,0 +1,12 @@
+---
+- hosts: lightsail
+  vars:
+  - repo: https://github.com/cympfh/date-server
+  - tag: dateserver
+  - port_container: 8000
+  - port_host: 8000
+  - command: >-
+      node index.js --port={{ port_container }}
+  roles:
+  - docker_build
+  - docker_deploy

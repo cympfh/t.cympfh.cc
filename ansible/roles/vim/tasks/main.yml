@@ -1,0 +1,15 @@
+- name: workspace
+  file:
+    path: $HOME/Tools
+    state: directory
+- name: vim source code
+  unarchive:
+    src: https://github.com/vim/vim/archive/v8.2.0045.zip
+    dest: $HOME/Tools
+    remote_src: yes
+- file:
+    path: $HOME/.vim/bundle
+    state: directory
+- git:
+    repo: https://github.com/VundleVim/Vundle.vim.git
+    dest: $HOME/.vim/bundle/Vundle.vim

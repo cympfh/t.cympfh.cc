@@ -1,0 +1,26 @@
+- name: stop container
+  shell: docker stop {{ tag }}
+  ignore_errors: yes
+
+- name: rm container
+  shell: docker rm {{ tag }}
+  ignore_errors: yes
+
+- name: deploy docker (without command)
+  command: docker run -d -p {{ port_host }}:{{ port_container }} --restart=always --name={{ tag }} {{ tag }}
+  when:
+  - port_host is defined
+  - port_container is defined
+  - command is not defined
+
+- name: deploy docker (with command)
+  command: docker run -d -p {{ port_host }}:{{ port_container }} --restart=always --name={{ tag }} {{ tag }} {{ command }}
+  when:
+  - port_host is defined
+  - port_container is defined
+  - command is defined
+
+- name: deploy docker (with full-command)
+  command: "{{ full_command }}"
+  when:
+  - full_command is defined
