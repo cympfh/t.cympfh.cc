@@ -1,0 +1,13 @@
+---
+- hosts: lightsail
+  vars:
+  - copy_files:
+    - Dockerfile
+    - cron.sh
+  - tag: dosoku-cron
+  - command:
+      sh -c "URL={{ slack.webhook }} bash cron.sh"
+  roles:
+  - docker_build
+  - docker_deploy
+
