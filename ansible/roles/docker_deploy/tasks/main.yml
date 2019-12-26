@@ -12,6 +12,7 @@
   - port_host is defined
   - port_container is defined
   - command is not defined
+  - full_command is not defined
 
 - name: deploy docker (w/o command, as batch)
   command: docker run -d --restart=always --name={{ tag }} {{ tag }}
@@ -19,6 +20,7 @@
   - port_host is not defined
   - port_container is not defined
   - command is not defined
+  - full_command is not defined
 
 - name: deploy docker (w/ command, as server)
   command: docker run -d -p {{ port_host }}:{{ port_container }} --restart=always --name={{ tag }} {{ tag }} {{ command }}
@@ -26,6 +28,7 @@
   - port_host is defined
   - port_container is defined
   - command is defined
+  - full_command is not defined
 
 - name: deploy docker (w/ command, as batch)
   command: docker run -d --restart=always --name={{ tag }} {{ tag }} {{ command }}
@@ -33,6 +36,7 @@
   - port_host is not defined
   - port_container is not defined
   - command is defined
+  - full_command is not defined
 
 - name: deploy docker (with full-command)
   command: "{{ full_command }}"
